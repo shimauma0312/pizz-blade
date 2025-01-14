@@ -5,15 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\HelloGonbe;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 
 // ポータルサイトホーム
 Route::get('/', action: [HomeController::class, 'index']);
 
 // ログイン後の一般的なページルーティング
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', action:[DashboardController::class, 'index'])->name('dashboard');
 
     // 他の認証とメール確認が必要なルートをここに追加
     // 例: Route::get('/profile', [ProfileController::class, 'show'])->name('profile');

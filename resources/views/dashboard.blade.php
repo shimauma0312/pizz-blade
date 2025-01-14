@@ -11,6 +11,17 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <!-- 記事一覧 -->
+                <div class="p-6 mx-auto ">
+                    <h2 class="text-center text-xl font-bold mb-4">記事一覧</h2>
+                    <div class="space-y-4"></div>
+                        @foreach ($posts as $post)
+                            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                                <h3 class="text-lg font-bold mb-4">{{ $post->title }}</h3>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>
