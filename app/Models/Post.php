@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Post extends Model
 {
     use HasFactory;
@@ -34,5 +35,12 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * 作成日が新しい順にPostsから10件取得
+     */
+    public function scopeLatestTenPosts(){
+        return Post::latest()->take(10)->get();
     }
 }
