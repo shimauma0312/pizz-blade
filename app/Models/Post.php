@@ -43,4 +43,5 @@ class Post extends Model
     public function scopeLatestTenPosts(){
         return Post::latest()->take(10)->get();
     }
+
 }
