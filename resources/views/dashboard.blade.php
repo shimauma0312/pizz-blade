@@ -17,7 +17,7 @@
                     <div class="space-y-4"></div>
                         @foreach ($posts as $post)
                             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                                <h3 class="text-lg font-bold mb-4">{{ $post->title }}</h3>
+                                <a href="dashboard/posts/show/{{ $post->id }}" class="text-lg font-bold mb-4">{{ $post->title }}</a>
                             </div>
                         @endforeach
                     </div>
