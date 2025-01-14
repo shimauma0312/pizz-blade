@@ -6,6 +6,7 @@ use App\Http\Middleware\HelloGonbe;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 
 // ポータルサイトホーム
 Route::get('/', action: [HomeController::class, 'index']);
@@ -14,8 +15,9 @@ Route::get('/', action: [HomeController::class, 'index']);
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', action:[DashboardController::class, 'index'])->name('dashboard');
 
-    // 他の認証とメール確認が必要なルートをここに追加
-    // 例: Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    // Postのルート
+    Route::get('/dashboard/posts/show/{postId}', [PostController::class, 'show'])->name('posts.show');
+
 });
 // 認証が必要なルートのグループ
 Route::middleware('auth')->group(function () {
