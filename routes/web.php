@@ -9,11 +9,15 @@ use App\Http\Controllers\HomeController;
 // ポータルサイトホーム
 Route::get('/', action: [HomeController::class, 'index']);
 
-// ダッシュボードページを表示するルート。認証とメール確認が必要。
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// ログイン後の一般的なページルーティング
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
+    // 他の認証とメール確認が必要なルートをここに追加
+    // 例: Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+});
 // 認証が必要なルートのグループ
 Route::middleware('auth')->group(function () {
     // プロフィール編集ページを表示するルート
