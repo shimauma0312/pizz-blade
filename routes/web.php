@@ -17,7 +17,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Postのルート
     Route::get('/dashboard/posts/show/{postId}', [PostController::class, 'show'])->name('posts.show');
+    // Postの新規作成ページを表示するルート
+    Route::get('/dashboard/posts/create', [PostController::class, 'createForm'])->name('posts.create');
 
+    // Postの新規作成処理をするルート
+    Route::post('/dashboard/posts/store', [PostController::class, 'store'])->name('posts.store');
 });
 // 認証が必要なルートのグループ
 Route::middleware('auth')->group(function () {
